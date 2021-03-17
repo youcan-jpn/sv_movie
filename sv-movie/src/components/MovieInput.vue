@@ -2,9 +2,9 @@
     <div class="movie-insert">
         <h2>動画情報登録</h2>
         <form>
-            <label for="year">年度：</label><input type="number" value="2021" name="year" id="year"/><br/>
+            <label for="year">年度：</label><input type="number" value="2021" name="year" id="year" v-model="year"/><br/>
             <label for="subject">科目：</label>
-            <select name="subject" id="subject">
+            <select name="subject" id="subject" v-model="subject">
                 <option value="" selected disabled>--科目を選択--</option>
                 <option value="英文読解">英文読解</option>
                 <option value="英文解釈">英文解釈</option>
@@ -22,8 +22,8 @@
                 <option value="高2数学">高2物理</option>
                 <option value="高2数学">高2化学</option>
             </select><br/>
-            <label for="date">授業日時：</label><input type="datetime-local" name="date" id="date"/><br/>
-            <label for="link">動画へのリンク：</label><input type="text" name="link" id="link" size="50"/><br/>
+            <label for="date">授業日時：</label><input type="datetime-local" name="date" id="date" v-model="date"/><br/>
+            <label for="link">動画へのリンク：</label><input type="text" name="link" id="link" size="50" v-model="link"/><br/>
             <input type="button" value="登録する" id="register" @click="register" />
         </form>
     </div>
@@ -33,9 +33,24 @@
 export default {
     data() {
         return {
-            inputValue: {
-
-            }
+            id: this.$store.getters.getNextId,
+            year: 2020,
+            subject: "",
+            date: "",
+            link: ""
+        }
+    },
+    methods: {
+        register() {
+            this.$store.commit("addMovie", {
+                movie: {
+                    id: this.id,
+                    year: this.year,
+                    subject: this.subject,
+                    date: new Date(this.date),
+                    link: this.link
+                }
+            })
         }
     }
 }

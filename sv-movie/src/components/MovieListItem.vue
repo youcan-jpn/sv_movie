@@ -5,7 +5,7 @@
         <td>{{ movie.subject }}</td>
         <td>{{ classDate }}</td>
         <td>{{ start }}</td>
-        <td class="flexbox">{{ movie.link }}<a href=""><img src="@/assets/copy_logo.png" height="18" @click="copyLink"/></a></td>
+        <td>{{ movie.link }}<a href=""><img src="@/assets/copy_logo.png" height="18" @click="copyLink"/></a></td>
         <td><input type="button" value="edit" @click="$emit(edit)"/></td>
     </tr>
 </template>

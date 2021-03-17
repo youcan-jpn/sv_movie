@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    currentId: 2,
     movies: [
       {
           id: 1,
@@ -22,7 +23,19 @@ export default new Vuex.Store({
       },
     ]
   },
+  getters: {
+    moviesCount(state) {
+      return state.movies.length
+    },
+    getNextId(state) {
+      state.currentId++
+      return state.currentId
+    }
+  },
   mutations: {
+    addMovie(state, payload) {
+      state.movies.push(payload.movie)
+    }
   },
   actions: {
   },

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p>全部で{{ moviesCount }}本の動画が登録されています。</p>
         <input type="button" :value="panelText" id="inputButton" @click="toggleInputPanel"/>
         <MovieInput v-show="show"/>
         <hr/>
@@ -27,6 +28,7 @@
 <script>
 import MovieInput from "./MovieInput.vue"
 import MovieListItem from "./MovieListItem.vue"
+import { mapGetters } from "vuex"
 
 export default {
     components: {
@@ -41,7 +43,8 @@ export default {
     computed: {
         movies() {
             return this.$store.state.movies
-        }
+        },
+        ...mapGetters(["moviesCount"])
     },
     methods: {
         editMovie() {
