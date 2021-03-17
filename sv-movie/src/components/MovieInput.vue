@@ -34,7 +34,7 @@ export default {
     data() {
         return {
             id: this.$store.getters.getNextId,
-            year: 2020,
+            year: 2021,
             subject: "",
             date: "",
             link: ""
